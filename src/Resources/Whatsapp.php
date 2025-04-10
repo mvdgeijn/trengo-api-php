@@ -34,4 +34,24 @@ class Whatsapp extends Resource
         ];
         return $this->client->doHttpCall('POST', $url, $body);
     }
+
+    /**
+     * @param string $mobile
+     * @param int $hsm_id
+     * @param array $params
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \WithZoey\Trengo\Exceptions\ApiException
+     * @throws \WithZoey\Trengo\Exceptions\MissingApiKeyException
+     */
+    public function sendTemplate(string $mobile, int $hsm_id, array $params = [])
+    {
+        $url = $this->getResourceName();
+        $body = [
+            "recipient_phone_number" => $mobile,
+            "hsm_id" => $hsm_id,
+            "params" => $params
+        ];
+        return $this->client->doHttpCall('POST', $url, $body);
+    }
 }
